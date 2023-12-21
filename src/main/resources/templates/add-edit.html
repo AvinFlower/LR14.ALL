@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <form th:action="@{/managers/add}" th:object="${manager}" method="post" class="form-horizontal">
+        <h3 th:if="${manager.id}" class="text-center">Редактирование менеджера</h3>
+        <h3 th:unless="${manager.id}" class="text-center">Добавление менеджера</h3>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{id}" placeholder="ID" class="form-control" type="hidden"/>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{manager_name}" placeholder="Имя менеджера" required class="form-control"/>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{manager_phone_num}" placeholder="Номер телефона" required class="form-control"/>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{manager_email}" placeholder="Почта" required class="form-control"/>
+        </div>
+
+        <div style="margin-top: 10px" class="form-group text-left">
+            <div class="controls">
+                <button style='margin-right: 0' type="submit" class="btn btn-success ml-auto" th:unless="${manager.id}">Добавить</button>
+                <button style='margin-right: 0' type="submit" class="btn btn-success ml-auto" th:if="${manager.id}">Сохранить изменения</button>
+            </div>
+        </div>
+
+    </form>
+    <form th:action="@{/managers}" class="text-left">
+        <button style='margin: 0' type="submit" class="btn btn-secondary ml-auto">Назад на главную</button>
+    </form>
+
+</div>
+</body>
+</html>

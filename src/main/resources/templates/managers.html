@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Список Менеджеров</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container mt-4" >
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя менеджера</th>
+            <th>Номер телефона</th>
+            <th>Почта</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="manager : ${managers}">
+            <td th:text="${manager.id}"/>
+            <td th:text="${manager.getManager_name}"/>
+            <td th:text="${manager.getManager_phone_num}"/>
+            <td th:text="${manager.getManager_email}"/>
+            <td>
+                <a th:href="@{'/managers/show/' + ${manager.id}}" th:text="Просмотреть" class="text-info"/>
+                <a th:href="@{'/managers/edit/' + ${manager.id}}" th:text="Редактировать" class="text-success" style="margin-left: 15px"/>
+                <a th:href="@{'/managers/delete/' + ${manager.id}}" th:text="Удалить" class="text-danger" style="margin-left: 15px"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <form th:action="@{/managers/add}">
+        <button type="submit" class="btn btn-success">Добавить менеджера</button>
+    </form>
+    <h3 style="margin-top: 20px" class="text-center">Фильтрация</h3>
+    <form th:action="@{/managers/filter}" method="get">
+        <div class="form-group">
+<!--            <label for="manager_name">Имя менеджера:</label>-->
+            <input type="text" placeholder="Имя менеджера" class="form-control" id="manager_name" name="manager_name" th:value="${manager_name}">
+        </div>
+        <div class="form-group">
+<!--            <label for="manager_phone_num">Номер телефона:</label>-->
+            <input type="text" placeholder="Номер телефона" class="form-control" id="manager_phone_num" name="manager_phone_num" th:value="${manager_phone_num}">
+        </div>
+        <div class="form-group">
+<!--            <label for="manager_email">Почта:</label>-->
+            <input type="text" placeholder="Почта" class="form-control" id="manager_email" name="manager_email" th:value="${manager_email}">
+        </div>
+        <button type="submit" class="btn btn-success">Применить</button>
+
+    </form>
+    <form th:action="@{/managers}">
+        <button style='margin-top: 10px' type="submit" class="btn btn-danger">Сбросить</button>
+    </form>
+</div>
+</body>
+</html>

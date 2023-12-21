@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container mt-4">
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <th>ID</th>
+      <td th:text="${manager.id}"></td>
+    </tr>
+    <tr>
+      <th>Имя менеджера</th>
+      <td th:text="${manager.getManager_name}"></td>
+    </tr>
+    <tr>
+      <th>Адрес</th>
+      <td th:text="${manager.getManager_phone_num}"></td>
+    </tr>
+    <tr>
+      <th>Время работы</th>
+      <td th:text="${manager.getManager_email}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <form th:action="@{/managers}" class="text-left">
+    <button style='margin: 0' type="submit" class="btn btn-secondary">Назад на главную</button>
+  </form>
+</div>
+</body>
+</html>
